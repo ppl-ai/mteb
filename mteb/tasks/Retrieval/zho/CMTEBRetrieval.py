@@ -314,8 +314,8 @@ class MedicalRetrieval(AbsTaskRetrieval):
         reference="https://arxiv.org/abs/2203.03367",
         dataset={
             "path": "C-MTEB/MedicalRetrieval",
-            "revision": "2039188fb5800a9803ba5048df7b76e6fb151fc6",
-            "qrel_revision": "37b8efec53c54c3d9c6af212f6710b62ccdf895c",
+            "revision": "e1d8e54a89401678b874773506cfa0a905aa5f27",
+            "qrel_revision": "521e25f2490224c319720d9f901061664b1483b7",
         },
         type="Retrieval",
         category="s2p",
@@ -333,6 +333,136 @@ class MedicalRetrieval(AbsTaskRetrieval):
         bibtex_citation=None,
         prompt={
             "query": "Given a medical question, retrieve user replies that best answer the question"
+        },
+    )
+
+    def load_data(self, **kwargs):
+        if self.data_loaded:
+            return
+
+        self.corpus, self.queries, self.relevant_docs = load_retrieval_data(
+            self.metadata_dict["dataset"]["path"],
+            self.metadata_dict["dataset"]["revision"],
+            self.metadata_dict["dataset"]["qrel_revision"],
+            self.metadata_dict["eval_splits"],
+        )
+        self.data_loaded = True
+
+class PplxRetrievalOneThousandth(AbsTaskRetrieval):
+    ignore_identical_ids = True
+
+    metadata = TaskMetadata(
+        name="PplxRetrievalOneThousandth",
+        description="PplxRetrievalOneThousandth",
+        reference="https://perplexity.ai",
+        dataset={
+            "path": "jinaai/pplx_jina_onethousandth",
+            "revision": "e1d8e54a89401678b874773506cfa0a905aa5f27",
+            "qrel_revision": "521e25f2490224c319720d9f901061664b1483b7",
+        },
+        type="Retrieval",
+        category="s2p",
+        modalities=["text"],
+        eval_splits=["dev"],
+        eval_langs=["en"],
+        main_score="ndcg_at_10",
+        date=None,
+        domains=None,
+        task_subtypes=None,
+        license=None,
+        annotations_creators=None,
+        dialect=None,
+        sample_creation=None,
+        bibtex_citation=None,
+        prompt={
+            "query": "Given a question, retrieve internet documents that answer the question"
+        },
+    )
+
+    def load_data(self, **kwargs):
+        if self.data_loaded:
+            return
+
+        self.corpus, self.queries, self.relevant_docs = load_retrieval_data(
+            self.metadata_dict["dataset"]["path"],
+            self.metadata_dict["dataset"]["revision"],
+            self.metadata_dict["dataset"]["qrel_revision"],
+            self.metadata_dict["eval_splits"],
+        )
+        self.data_loaded = True
+
+
+class PplxRetrievalNano(AbsTaskRetrieval):
+    ignore_identical_ids = True
+
+    metadata = TaskMetadata(
+        name="PplxRetrievalNano",
+        description="PplxRetrievalNano",
+        reference="https://perplexity.ai",
+        dataset={
+            "path": "jinaai/pplx_jina_nano",
+            "revision": "ae7b0309c7b49497d5521293ecbe198d22a6bf3f",
+            "qrel_revision": "b35ecf07bf0a6c3837bdb97368bb6074ae6e0e16",
+        },
+        type="Retrieval",
+        category="s2p",
+        modalities=["text"],
+        eval_splits=["dev"],
+        eval_langs=["en"],
+        main_score="ndcg_at_10",
+        date=None,
+        domains=None,
+        task_subtypes=None,
+        license=None,
+        annotations_creators=None,
+        dialect=None,
+        sample_creation=None,
+        bibtex_citation=None,
+        prompt={
+            "query": "Given a question, retrieve internet documents that answer the question"
+        },
+    )
+
+    def load_data(self, **kwargs):
+        if self.data_loaded:
+            return
+
+        self.corpus, self.queries, self.relevant_docs = load_retrieval_data(
+            self.metadata_dict["dataset"]["path"],
+            self.metadata_dict["dataset"]["revision"],
+            self.metadata_dict["dataset"]["qrel_revision"],
+            self.metadata_dict["eval_splits"],
+        )
+        self.data_loaded = True
+
+class PplxRetrieval(AbsTaskRetrieval):
+    ignore_identical_ids = True
+
+    metadata = TaskMetadata(
+        name="PplxRetrieval",
+        description="PplxRetrieval",
+        reference="https://perplexity.ai",
+        dataset={
+            "path": "jinaai/pplx_jina_onethousandth",
+            "revision": "e1d8e54a89401678b874773506cfa0a905aa5f27",
+            "qrel_revision": "c43f10b77d28bf4ae6d97b0c16c46fd7f62fd5ac",
+        },
+        type="Retrieval",
+        category="s2p",
+        modalities=["text"],
+        eval_splits=["dev"],
+        eval_langs=["en"],
+        main_score="ndcg_at_10",
+        date=None,
+        domains=None,
+        task_subtypes=None,
+        license=None,
+        annotations_creators=None,
+        dialect=None,
+        sample_creation=None,
+        bibtex_citation=None,
+        prompt={
+            "query": "Given a question, retrieve internet documents that answer the question"
         },
     )
 
