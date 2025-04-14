@@ -314,8 +314,8 @@ class MedicalRetrieval(AbsTaskRetrieval):
         reference="https://arxiv.org/abs/2203.03367",
         dataset={
             "path": "C-MTEB/MedicalRetrieval",
-            "revision": "e1d8e54a89401678b874773506cfa0a905aa5f27",
-            "qrel_revision": "521e25f2490224c319720d9f901061664b1483b7",
+            "revision": "2039188fb5800a9803ba5048df7b76e6fb151fc6",
+            "qrel_revision": "37b8efec53c54c3d9c6af212f6710b62ccdf895c",
         },
         type="Retrieval",
         category="s2p",
